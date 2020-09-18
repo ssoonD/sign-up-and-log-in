@@ -1,0 +1,49 @@
+{
+    "users": [{
+            "username": "one",
+            "password": "1111",
+            "nickname": "1️⃣"
+        },
+        {
+            "username": "two",
+            "password": "2222",
+            "nickname": "2️⃣"
+        },
+        {
+            "username": "three",
+            "password": "3333",
+            "nickname": "3️⃣"
+        },
+        {
+            "username": "four",
+            "password": "4444",
+            "nickname": "4️⃣"
+        },
+        {
+            "username": "five",
+            "password": "5555",
+            "nickname": "5️⃣"
+        },
+        {
+            "username": "six",
+            "password": "6666",
+            "nickname": "6️⃣"
+        },
+        {
+            "username": "seven",
+            "password": "7777",
+            "nickname": "7️⃣"
+        },
+        {
+            "username": "eight",
+            "password": "8888",
+            "nickname": "8️⃣"
+        },
+        {
+            "username": "nine",
+            "password": "9999",
+            "nickname": "9️⃣"
+        }
+    ]
+
+}

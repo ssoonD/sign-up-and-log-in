@@ -45,34 +45,6 @@ body {
   height: 40px;
 }
 
-.txtb span::before {
-  content: attr(data-placeholder);
-  position: absolute;
-  top: 50%;
-  left: 5px;
-  color: #adadad;
-  transform: translateY(-50%);
-  z-index: -1;
-  transition: 0.5s;
-}
-
-.txtb span::after {
-  content: "";
-  position: absolute;
-  width: 0%;
-  height: 2px;
-  background: linear-gradient(120deg, #3498db, #8e44ad);
-  transition: 0.5s;
-}
-
-.focus+span::before {
-  top: -5px;
-}
-
-.focus+span::after {
-  width: 100%;
-}
-
 .btn {
   display: block;
   width: 100%;
@@ -103,6 +75,7 @@ body {
 
 .greeting {
   position: absolute;
+  font-size: 60px;
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
