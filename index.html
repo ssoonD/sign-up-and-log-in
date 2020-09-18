@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>LOGIN</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+
+  <body>
+    <h1 class="greeting">Hi soon</h1>
+
+    <form class="form login-form">
+      <h1>Login</h1>
+
+      <div class="txtb">
+        <input type="text" id="login-username" />
+        <span data-placeholder="Username"></span>
+      </div>
+
+      <div class="txtb">
+        <input type="password" id="login-password" />
+        <span data-placeholder="Password"></span>
+      </div>
+
+      <input type="submit" class="btn logbtn" value="Login" />
+
+      <div class="bottom-text">
+        Don't have account?<button class="login-joinbtn">JOIN</button>
+      </div>
+    </form>
+
+    <form class="form join-form">
+      <input type="button" class="closebtn" value="X" />
+
+      <h1>Join</h1>
+
+      <div class="txtb">
+        <input type="text" id="join-username" />
+        <span data-placeholder="Username"></span>
+      </div>
+
+      <div class="txtb">
+        <input type="password" id="join-password" />
+        <span data-placeholder="Password"></span>
+      </div>
+
+      <div class="txtb">
+        <input type="text" id="join-nickname" />
+        <span data-placeholder="Nickname"></span>
+      </div>
+
+      <input type="submit" class="btn joinbtn" value="Join" />
+    </form>
+
+    <script src="join.js"></script>
+  </body>
+</html>
