@@ -2,13 +2,21 @@ const loginForm = document.querySelector(".login-form"),
     joinForm = document.querySelector(".join-form");
 
 const user = {
-    data: [],
+    data: []
 };
 
 function loadItems() {
     return fetch("data.json")
         .then((response) => response.json())
         .then((json) => json.users);
+}
+
+function resetInput() {
+    document.querySelector(".login-username").value = "";
+    document.querySelector(".login-password").value = "";
+    document.querySelector(".join-username").value = "";
+    document.querySelector(".join-password").value = "";
+    document.querySelector(".join-nickname").value = "";
 }
 
 function fideNickname(user, name, pass) {
@@ -23,47 +31,56 @@ function onLogoutClick() {
     loginForm.classList.remove("hide");
 }
 
+// 중복 확인 
+function checkUsername(user, username) {
+    const found = user.data.find((u) => u.username === username);
+    if (found === undefined) return true;
+    else return false;
+}
+
 function onLoginClick(user) {
     const username = document.querySelector(".login-username");
     const password = document.querySelector(".login-password");
     const greeting = document.querySelector(".greeting");
     const nickname = fideNickname(user, username.value, password.value);
+
+
     loginForm.classList.add("hide");
-    username.value = "";
-    password.value = "";
     greeting.classList.remove("hide");
     greeting.innerText = `Hello ${nickname} 🤗`;
-    greeting.addEventListener("click", onLogoutClick)
+    greeting.addEventListener("click", onLogoutClick);
+    resetInput();
 }
 
 function onJoinClick(user) {
     const username = document.querySelector(".join-username");
     const password = document.querySelector(".join-password");
     const nickname = document.querySelector(".join-nickname");
+    const errorText = document.querySelector(".txtb-error");
 
-    const itemObj = {
-        username: username.value,
-        password: password.value,
-        nickname: nickname.value
-    };
-
-    user.data.push(itemObj);
-    onCloseClick();
+    if (checkUsername(user, username.value)) {
+        errorText.classList.add("hide");
+        const itemObj = {
+            username: username.value,
+            password: password.value,
+            nickname: nickname.value
+        };
+        user.data.push(itemObj);
+        onCloseClick();
+    } else {
+        errorText.innerText = `Account exists`;
+        errorText.classList.remove("hide");
+    }
 }
 
 function onToJoinClick() {
     joinForm.classList.remove("hide");
+    resetInput();
 }
 
 function onCloseClick() {
-    const username = document.querySelector(".join-username");
-    const password = document.querySelector(".join-password");
-    const nickname = document.querySelector(".join-nickname");
-
     joinForm.classList.add("hide");
-    username.value = "";
-    password.value = "";
-    nickname.value = "";
+    resetInput();
 }
 
 function setEventListreners(user) {
@@ -89,6 +106,6 @@ function init() {
 init();
 
 // 기능 추가 
-// 1. 중복 아이디 X
+// 1. 중복 아이디 X - O
 // 2. 로그아웃
 // 3. 계정 삭제

@@ -7,17 +7,26 @@
   </head>
 
   <body>
-    <h1 class="greeting hide">Hi soon</h1>
+    <div class="user-contatiner hide">
+      <h1 class="greeting">Hi soon</h1>
+      <button type="button" class="logout"></button>
+    </div>
 
     <form class="form login-form">
-      <h1>Login</h1>
+      <h1 class="form-title">Login</h1>
 
-      <div class="txtb">
-        <input type="text" class="login-username" placeholder="Username" />
-      </div>
+      <div class="txtb-container">
+        <div class="txtb">
+          <input type="text" class="login-username" placeholder="Username" />
+        </div>
 
-      <div class="txtb">
-        <input type="password" class="login-password" placeholder="Password" />
+        <div class="txtb">
+          <input
+            type="password"
+            class="login-password"
+            placeholder="Password"
+          />
+        </div>
       </div>
 
       <button type="button" class="btn logbtn">Login</button>
@@ -29,21 +38,24 @@
       </div>
     </form>
 
-    <form class="form join-form hide">
+    <form class="form join-form hide" action="">
       <input type="button" class="closebtn" value="X" />
 
-      <h1>Join</h1>
+      <h1 class="form-title">Join</h1>
 
-      <div class="txtb">
-        <input type="text" class="join-username" placeholder="Username" />
-      </div>
+      <div class="txtb-container">
+        <div class="txtb">
+          <input type="text" class="join-username" placeholder="Username" />
+          <div class="txtb-error hide">error</div>
+        </div>
 
-      <div class="txtb">
-        <input type="password" class="join-password" placeholder="Password" />
-      </div>
+        <div class="txtb">
+          <input type="password" class="join-password" placeholder="Password" />
+        </div>
 
-      <div class="txtb">
-        <input type="text" class="join-nickname" placeholder="Nickname" />
+        <div class="txtb">
+          <input type="text" class="join-nickname" placeholder="Nickname" />
+        </div>
       </div>
 
       <button type="button" class="btn joinbtn">Join</button>
