@@ -17,6 +17,11 @@ function resetInput() {
     document.querySelector(".join-username").value = "";
     document.querySelector(".join-password").value = "";
     document.querySelector(".join-nickname").value = "";
+    document.querySelector(".login-username-error").innerText = "";
+    document.querySelector(".login-password-error").innerText = "";
+    document.querySelector(".join-username-error").innerText = "";
+    document.querySelector(".join-password-error").innerText = "";
+    document.querySelector(".join-nickname-error").innerText = "";
 }
 
 function onLogoutClick() {
