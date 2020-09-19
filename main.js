@@ -19,11 +19,6 @@ function resetInput() {
     document.querySelector(".join-nickname").value = "";
 }
 
-function fideNickname(user, name, pass) {
-    const value = user.data.filter((u) => u.username === name && u.password === pass);
-    return value[0].nickname;
-}
-
 function onLogoutClick() {
     const greeting = document.querySelector(".greeting");
     greeting.innerText = "";
@@ -31,7 +26,15 @@ function onLogoutClick() {
     loginForm.classList.remove("hide");
 }
 
+function fideNickname(user, name, pass) {
+    const found = user.data.find((u) => u.username === name && u.password === pass);
+    if (found === undefined) return false;
+    else return found.nickname;
+}
+
 // 중복 확인 
+// username이 존재하지 않으면 true
+// username이 존재하면 false
 function checkUsername(user, username) {
     const found = user.data.find((u) => u.username === username);
     if (found === undefined) return true;
@@ -43,33 +46,80 @@ function onLoginClick(user) {
     const password = document.querySelector(".login-password");
     const greeting = document.querySelector(".greeting");
     const nickname = fideNickname(user, username.value, password.value);
+    const errorUsername = document.querySelector(".login-username-error");
+    const errorPassword = document.querySelector(".login-password-error");
 
+    // 입력하지 않았을 때 
+    if (username.value === "") {
+        errorUsername.innerText = `Username is required`;
+        errorUsername.classList.remove("hide");
+    } else {
+        errorUsername.classList.add("hide");
+    }
+    if (password.value === "") {
+        errorPassword.innerText = `Password is required`;
+        errorPassword.classList.remove("hide");
+    } else {
+        errorPassword.classList.add("hide");
+    }
 
-    loginForm.classList.add("hide");
-    greeting.classList.remove("hide");
-    greeting.innerText = `Hello ${nickname} 🤗`;
-    greeting.addEventListener("click", onLogoutClick);
-    resetInput();
+    if (username.value !== "" && password.value !== "") {
+        if (nickname) {
+            loginForm.classList.add("hide");
+            greeting.classList.remove("hide");
+            greeting.innerText = `Hello ${nickname} 🤗`;
+            greeting.addEventListener("click", onLogoutClick);
+            resetInput();
+        } else {
+            errorUsername.innerText = `The account does not exist`;
+            errorUsername.classList.remove("hide");
+        }
+    }
 }
 
 function onJoinClick(user) {
     const username = document.querySelector(".join-username");
     const password = document.querySelector(".join-password");
     const nickname = document.querySelector(".join-nickname");
-    const errorText = document.querySelector(".txtb-error");
+    const errorUsername = document.querySelector(".join-username-error");
+    const errorPassword = document.querySelector(".join-password-error");
+    const errorNickname = document.querySelector(".join-nickname-error");
 
-    if (checkUsername(user, username.value)) {
-        errorText.classList.add("hide");
-        const itemObj = {
-            username: username.value,
-            password: password.value,
-            nickname: nickname.value
-        };
-        user.data.push(itemObj);
-        onCloseClick();
+    // 입력하지 않았을 때 
+    if (username.value === "") {
+        errorUsername.innerText = `Username is required`;
+        errorUsername.classList.remove("hide");
     } else {
-        errorText.innerText = `Account exists`;
-        errorText.classList.remove("hide");
+        errorUsername.classList.add("hide");
+    }
+    if (password.value === "") {
+        errorPassword.innerText = `Password is required`;
+        errorPassword.classList.remove("hide");
+    } else {
+        errorPassword.classList.add("hide");
+    }
+    if (nickname.value === "") {
+        errorNickname.innerText = `Nickname is required`;
+        errorNickname.classList.remove("hide");
+    } else {
+        errorNickname.classList.add("hide");
+    }
+
+    if (username.value !== "" && password.value !== "" && nickname.value !== "") {
+        if (checkUsername(user, username.value)) {
+            // username이 존재하지 않을 때 
+            const itemObj = {
+                username: username.value,
+                password: password.value,
+                nickname: nickname.value
+            };
+            user.data.push(itemObj);
+            onCloseClick();
+        } else {
+            // username이 존재할 때 
+            errorUsername.innerText = `Account exists`;
+            errorUsername.classList.remove("hide");
+        }
     }
 }
 
@@ -104,8 +154,3 @@ function init() {
 }
 
 init();
-
-// 기능 추가 
-// 1. 중복 아이디 X - O
-// 2. 로그아웃
-// 3. 계정 삭제
