@@ -22,4 +22,4 @@
 <br><br>
 
 # 👩🏻‍🏫 Reference
-[노마드코더](https://nomadcoders.co/javascript-for-beginners/lobby)
+[HTML, CSS 참고](https://www.youtube.com/watch?v=ZvU57lTnNgo&t=1s)
